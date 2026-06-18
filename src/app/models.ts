@@ -116,3 +116,67 @@ export interface DateRange {
   checkIn: string;   // 'yyyy-MM-dd'
   checkOut: string;
 }
+
+export type DashboardSummary = Record<string, any>;
+export type DashboardBookings = any[] | Record<string, any>;
+
+export interface DashboardMetric {
+  label: string;
+  value: number | string;
+}
+
+export interface RoomStatusCount {
+  status: string | null;
+  count: number;
+}
+
+export interface RoomWithCurrentBooking {
+  roomId: string;
+  roomNumber: string | null;
+  roomType: string | null;
+  pricePerNight: number;
+  floor: number;
+  roomStatus: string | null;
+  reservationId: string | null;
+  guestName: string | null;
+  guestEmail: string | null;
+  checkInDate: string | null;
+  checkOutDate: string | null;
+  bookingStatus: string | null;
+}
+
+export interface BookingHistoryEntry {
+  id: string;
+  roomNumber: string | null;
+  roomType: string | null;
+  guestName: string | null;
+  guestEmail: string | null;
+  checkInDate: string;
+  checkOutDate: string;
+  nights: number;
+  status: string | null;
+  totalPrice: number;
+  notes: string | null;
+  createdAt: string | null;
+}
+
+export interface DashboardSummaryResponse {
+  totalRooms: number;
+  availableRooms: number;
+  occupiedRooms: number;
+  maintenanceRooms: number;
+  todayCheckIns: number;
+  todayCheckOuts: number;
+  pendingReservations: number;
+  confirmedReservations: number;
+  activeReservations: number;
+  revenueThisMonth: number;
+  revenueTotal: number;
+  roomStatusBreakdown: RoomStatusCount[] | null;
+  rooms: RoomWithCurrentBooking[] | null;
+}
+
+export interface DashboardBookingsResponse {
+  active: BookingHistoryEntry[] | null;
+  history: BookingHistoryEntry[] | null;
+}

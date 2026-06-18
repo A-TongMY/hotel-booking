@@ -6,6 +6,7 @@ import {
   Room, RoomType, CreateRoomRequest, UpdateRoomRequest,
   Reservation, CreateReservationRequest, UpdateReservationRequest,
   Guest, UpdateGuestRequest,
+  DashboardSummary, DashboardBookings,
 } from './models';
 
 @Injectable({ providedIn: 'root' })
@@ -96,4 +97,13 @@ export class ApiService {
   updateMyProfile(req: UpdateGuestRequest): Observable<Guest> {
     return this.http.put<Guest>(`${this.base}/guests/me`, req);
   }
+  
+   // ── Dashboard ──────────────────────────────────────────────────────────────
+  getDashboardSummary(): Observable<DashboardSummary> {
+    return this.http.get<DashboardSummary>(`${this.base}/dashboard/summary`);
+  }
+
+  getDashboardBookings(): Observable<DashboardBookings> {
+    return this.http.get<DashboardBookings>(`${this.base}/dashboard/bookings`);
+  } 
 }

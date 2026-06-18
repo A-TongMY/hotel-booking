@@ -11,7 +11,11 @@ export const authGuard: CanActivateFn = () => {
 /** Redirect to rooms if already logged in (for login/signup pages) */
 export const publicGuard: CanActivateFn = () => {
   const auth = inject(AuthService);
-  return auth.isLoggedIn() ? inject(Router).createUrlTree(['/rooms']) : true;
+  if (!auth.isLoggedIn()) return true;
+
+  return inject(Router).createUrlTree([
+    auth.isStaff() ? '/dashboard' : '/rooms'
+  ]);
 };
 
 /** Require staff role */

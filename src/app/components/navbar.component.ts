@@ -10,9 +10,9 @@ import { AuthService } from '../auth/auth.service';
     <header class="navbar">
       <div class="nav-inner">
 
-        <a routerLink="/rooms" class="nav-brand">
+        <a [routerLink]="auth.isStaff() ? '/dashboard' : '/rooms'" class="nav-brand">
           <span class="nav-brand-mark">S</span>StayEase
-        </a>
+          </a>
 
         <nav class="nav-links">
           @if (auth.isLoggedIn()) {
@@ -27,6 +27,7 @@ import { AuthService } from '../auth/auth.service';
 
             @if (auth.isStaff()) {
               <!-- Staff only -->
+              <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
               <a routerLink="/manage-reservations" routerLinkActive="active">Reservations</a>
               <a routerLink="/manage-rooms" routerLinkActive="active">Manage Rooms</a>
             }

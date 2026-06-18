@@ -116,6 +116,6 @@ export class LoginComponent {
     this.loading.set(false);
 
     if (error) { this.error.set(error); return; }
-    this.router.navigate([this.auth.isStaff() ? '/manage-reservations' : '/rooms']);
+    this.router.navigate([this.auth.isStaff() ? '/dashboard' : '/rooms']);
   }
 }
